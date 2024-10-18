@@ -40,6 +40,7 @@
             color: #ffffff;
             text-align: right;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            outline: none; /* Remove outline on focus */
         }
 
         .buttons {
@@ -122,6 +123,19 @@
                 setTimeout(clearDisplay, 1500);
             }
         }
+
+        // Keyboard input handling
+        document.addEventListener('keydown', function(event) {
+            if (event.key >= '0' && event.key <= '9') {
+                appendToDisplay(event.key);
+            } else if (event.key === 'C' || event.key === 'c') {
+                clearDisplay();
+            } else if (['+', '-', '*', '/'].includes(event.key)) {
+                appendToDisplay(event.key);
+            } else if (event.key === 'Enter') {
+                calculate();
+            }
+        });
     </script>
 </body>
 </html>
